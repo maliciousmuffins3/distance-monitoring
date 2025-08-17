@@ -59,6 +59,8 @@ app.get("/send-alert", emailRateLimiter, async (req, res) => {
       html: htmlTemplate,
     });
 
+    console.log("Alert email sent successfully to:", to);
+
     res
       .status(200)
       .json({ success: true, message: "Alert email sent successfully" });
