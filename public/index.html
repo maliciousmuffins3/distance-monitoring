@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Evacuation Centers Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 100vh; /* full screen */
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Initialize map (center on PH)
+      const map = L.map("map").setView([12.8797, 121.774], 6);
+
+      // Add basemap (OpenStreetMap tiles)
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      // Fetch evacuation centers from your API
+      fetch("http://localhost:3000/evac-centers")
+        .then((res) => res.json())
+        .then((data) => {
+          data.features.forEach((feature) => {
+            const [lon, lat] = feature.geometry.coordinates;
+            const name = feature.properties.name || "Unnamed Shelter";
+
+            // Add marker
+            L.marker([lat, lon])
+              .addTo(map)
+              .bindPopup(`<b>${name}</b><br/>Evacuation Center`);
+          });
+        })
+        .catch((err) => console.error("Error loading data:", err));
+    </script>
+  </body>
+</html>
