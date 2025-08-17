@@ -5,7 +5,8 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: #f4f4f7;
+        background: #f1f5f9;
+        margin: 0;
         padding: 20px;
       }
       .container {
@@ -30,15 +31,52 @@
         font-size: 16px;
         line-height: 1.6;
       }
+      .highlight {
+        font-weight: bold;
+        color: #e63946;
+      }
+
+      /* Button styling - forces white text always */
       .btn {
         display: inline-block;
         margin-top: 20px;
         padding: 12px 20px;
         background: #e63946;
-        color: white;
+        color: white !important; /* force white */
         text-decoration: none;
         border-radius: 8px;
         font-weight: bold;
+      }
+
+      /* Force all link states to be white and no underline */
+      .btn:link,
+      .btn:visited,
+      .btn:hover,
+      .btn:active,
+      .btn:focus {
+        color: white !important;
+        text-decoration: none;
+      }
+
+      .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      .info-table td {
+        padding: 6px 0;
+      }
+      .info-table td:first-child {
+        font-weight: bold;
+        color: #555;
+        width: 120px;
+      }
+      .actions {
+        margin-top: 15px;
+        padding: 12px;
+        background: #f8d7da;
+        border-radius: 8px;
+        color: #721c24;
       }
     </style>
   </head>
@@ -47,12 +85,34 @@
       <div class="header">🚨 Water Level Alert</div>
       <div class="content">
         <p>
-          The water level in your area is <strong>very high</strong>. For your
-          safety, please evacuate immediately.
+          The water level in your area is
+          <span class="highlight">very high</span>. For your safety, please
+          evacuate immediately.
         </p>
-        <a href="https://www.google.com/maps" class="btn"
-          >Find Safe Locations</a
+
+        <div class="actions">
+          <p>Recommended Actions:</p>
+          <ul>
+            <li>Move to higher ground immediately.</li>
+            <li>Turn off electricity and gas supply if safe.</li>
+            <li>Keep emergency kit ready (food, water, first aid).</li>
+            <li>Do not attempt to drive through flooded areas.</li>
+          </ul>
+        </div>
+
+        <p>For more information and directions to safe evacuation centers:</p>
+        <a
+          href="https://quezoncity.gov.ph/evacuation-centers/"
+          target="_blank"
+          class="btn"
         >
+          Find Safe Locations
+        </a>
+
+        <p style="margin-top: 15px; font-size: 14px; color: #555">
+          Emergency Hotline: <span class="highlight">911</span> | Local Disaster
+          Office: <span class="highlight">02-123-4567</span>
+        </p>
       </div>
     </div>
   </body>
